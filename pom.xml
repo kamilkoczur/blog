@@ -499,7 +499,7 @@
                     <url>jdbc:mysql://localhost:3306/blog</url>
                     <defaultSchemaName>blog</defaultSchemaName>
                     <username>root</username>
-                    <password></password>
+                    <password>admin</password>
                     <referenceUrl>hibernate:spring:org.jhipster.blog.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>
@@ -808,150 +808,100 @@
                 <spring.profiles.active>prod${profile.swagger}${profile.no-liquibase}</spring.profiles.active>
             </properties>
         </profile>
-        <profile>
-            <!--
-                Profile for doing "continuous compilation" with the Scala Maven plugin.
-                It allows automatic compilation of Java classes as soon as they are saved.
-                To use it, run in 3 terminals:
-                - './mvnw -Pcc scala:cc' for continuous compilation of your classes
-                - './mvnw -Pcc' for hot reload of Spring boot
-                - 'npm start/yarn start' for hot reload of the HTML/JavaScript asset
-                Everything should hot reload automatically!
-            -->
-            <id>cc</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-undertow</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <optional>true</optional>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <warSourceDirectory>src/main/webapp/</warSourceDirectory>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <executable>true</executable>
-                            <fork>true</fork>
-                            <addResources>true</addResources>
-                            <!--
-                            Enable the line below to have remote debugging of your application on port 5005
-                            <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
-                            -->
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>default-compile</id>
-                                <phase>none</phase>
-                            </execution>
-                            <execution>
-                                <id>default-testCompile</id>
-                                <phase>none</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.alchim31.maven</groupId>
-                        <artifactId>scala-maven-plugin</artifactId>
-                        <version>${scala-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>compile</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>add-source</goal>
-                                    <goal>compile</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>test-compile</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                    <goal>add-source</goal>
-                                    <goal>testCompile</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <recompileMode>incremental</recompileMode>
-                            <verbose>true</verbose>
-                            <scalaVersion>${scala.version}</scalaVersion>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <properties>
-                <!-- log configuration -->
-                <logback.loglevel>DEBUG</logback.loglevel>
-                <!-- default Spring profiles -->
-                <spring.profiles.active>dev,swagger</spring.profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <!--
-                Profile for monitoring the application with Graphite.
-            -->
-            <id>graphite</id>
-            <dependencies>
-                <dependency>
-                    <groupId>io.dropwizard.metrics</groupId>
-                    <artifactId>metrics-graphite</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <!--
-                Profile for monitoring the application with Prometheus.
-            -->
-            <id>prometheus</id>
-            <dependencies>
-                <dependency>
-                    <groupId>io.prometheus</groupId>
-                    <artifactId>simpleclient</artifactId>
-                    <version>${prometheus-simpleclient.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>io.prometheus</groupId>
-                    <artifactId>simpleclient_servlet</artifactId>
-                    <version>${prometheus-simpleclient.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>io.prometheus</groupId>
-                    <artifactId>simpleclient_dropwizard</artifactId>
-                    <version>${prometheus-simpleclient.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <!--
-                Profile for applying IDE-specific configuration.
-                At the moment it only configures MapStruct, which you need when working
-                with DTOs.
-            -->
-            <id>IDE</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.mapstruct</groupId>
-                    <artifactId>mapstruct-processor</artifactId>
-                    <version>${mapstruct.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
+        <!--<profile>-->
+            <!--&lt;!&ndash;-->
+                <!--Profile for doing "continuous compilation" with the Scala Maven plugin.-->
+                <!--It allows automatic compilation of Java classes as soon as they are saved.-->
+                <!--To use it, run in 3 terminals:-->
+                <!-- - './mvnw -Pcc scala:cc' for continuous compilation of your classes-->
+                <!-- - './mvnw -Pcc' for hot reload of Spring boot-->
+                <!-- - 'npm start/yarn start' for hot reload of the HTML/JavaScript asset-->
+                <!--Everything should hot reload automatically!-->
+            <!--&ndash;&gt;-->
+            <!--<id>cc</id>-->
+            <!--<dependencies>-->
+                <!--<dependency>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-starter-undertow</artifactId>-->
+                <!--</dependency>-->
+                <!--<dependency>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-devtools</artifactId>-->
+                    <!--<optional>true</optional>-->
+                <!--</dependency>-->
+            <!--</dependencies>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-war-plugin</artifactId>-->
+                        <!--<configuration>-->
+                            <!--<warSourceDirectory>src/main/webapp/</warSourceDirectory>-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.springframework.boot</groupId>-->
+                        <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                        <!--<configuration>-->
+                            <!--<executable>true</executable>-->
+                            <!--<fork>true</fork>-->
+                            <!--<addResources>true</addResources>-->
+                            <!--&lt;!&ndash;-->
+                            <!--Enable the line below to have remote debugging of your application on port 5005-->
+                            <!--<jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>-->
+                            <!--&ndash;&gt;-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<id>default-compile</id>-->
+                                <!--<phase>none</phase>-->
+                            <!--</execution>-->
+                            <!--<execution>-->
+                                <!--<id>default-testCompile</id>-->
+                                <!--<phase>none</phase>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                    <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<groupId>net.alchim31.maven</groupId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<artifactId>scala-maven-plugin</artifactId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<version>${scala-maven-plugin.version}</version>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<executions>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<id>compile</id>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<phase>compile</phase>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<goal>add-source</goal>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<goal>compile</goal>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<id>test-compile</id>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<phase>test-compile</phase>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<goal>add-source</goal>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<goal>testCompile</goal>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</executions>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<recompileMode>incremental</recompileMode>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<verbose>true</verbose>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<scalaVersion>${scala.version}</scalaVersion>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
+                <!--</plugins>-->
+            <!--</build>-->
+            <!--<properties>-->
+                <!--&lt;!&ndash; log configuration &ndash;&gt;-->
+                <!--<logback.loglevel>DEBUG</logback.loglevel>-->
+                <!--&lt;!&ndash; default Spring profiles &ndash;&gt;-->
+                <!--<spring.profiles.active>dev,swagger</spring.profiles.active>-->
+            <!--</properties>-->
+        <!--</profile>-->
     </profiles>
 </project>
